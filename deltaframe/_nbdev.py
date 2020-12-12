@@ -5,7 +5,8 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 index = {"get_added_rows": "00_core.ipynb",
          "get_removed_rows": "00_core.ipynb",
          "get_modified_rows": "00_core.ipynb",
-         "logging": "00_core.ipynb"}
+         "show_delta": "00_core.ipynb",
+         "log_delta": "00_core.ipynb"}
 
 modules = ["core.py"]
 
