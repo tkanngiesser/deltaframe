@@ -1,6 +1,6 @@
 # deltaframe
 
-> Show and log the delta between two Pandas dataframes.
+> A convenient way to manage to show and log the delta between two Pandas dataframes.
 
 
 ## Install
