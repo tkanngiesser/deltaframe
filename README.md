@@ -1,4 +1,4 @@
-# Deltaframe
+# deltaframe
 > Show and log the delta between two Pandas dataframes.
 
 
@@ -159,10 +159,10 @@ df_new
 
 #### Show the delta
 
-Let's look at the main function `show_delta` first.
+Let's look at the main function `get_delta` first.
 
 ```
-show_delta(df_old=df_old, df_new=df_new, unique_id="id", sort_by="date")
+get_delta(df_old=df_old, df_new=df_new, unique_id="id", sort_by="date")
 ```
 
 
@@ -236,8 +236,10 @@ show_delta(df_old=df_old, df_new=df_new, unique_id="id", sort_by="date")
 
 It's also possible to just get information about added, removed or modified rows as shown in the following:
 
+Show added rows with `get_added`.
+
 ```
-added_rows = get_added_rows(df_old=df_old, df_new=df_new, unique_id="id")
+added_rows = get_added(df_old=df_old, df_new=df_new, unique_id="id")
 added_rows
 ```
 
@@ -286,8 +288,10 @@ added_rows
 
 What about removed rows (in df_old but not any longer in df_new) ?
 
+`get_removed`
+
 ```
-removed_rows = get_removed_rows(df_old=df_old, df_new=df_new, unique_id="id")
+removed_rows = get_removed(df_old=df_old, df_new=df_new, unique_id="id")
 removed_rows
 ```
 
@@ -334,10 +338,10 @@ removed_rows
 
 
 
-Awesome, finally we check for the modified rows (also showing added rows).
+Awesome, finally we check for the modified rows (also showing added rows) with `get_modified`.
 
 ```
-modified_rows = get_modified_rows(df_old=df_old, df_new=df_new, unique_id="id")
+modified_rows = get_modified(df_old=df_old, df_new=df_new, unique_id="id")
 modified_rows
 ```
 
@@ -403,7 +407,7 @@ modified_rows
 If we don't want to show added rows as modified, we can pass the added_rows dataframe created above.
 
 ```
-modified_rows = get_modified_rows(df_old=df_old, df_new=df_new, unique_id="id", added_rows=added_rows)
+modified_rows = get_modified(df_old=df_old, df_new=df_new, unique_id="id", added_rows=added_rows)
 modified_rows
 ```
 
@@ -543,102 +547,24 @@ df_log
 ```
 
 
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-26-b1a66c30bcc2> in <module>
+    ----> 1 df_log = log_delta(df_log=df_log, df_old=df_old, df_new=df_new, unique_id="id")
+          2 df_log
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+    ~/Repos/deltaframe/deltaframe/core.py in log_delta(df_log, df_old, df_new, unique_id, trans_col, trans_val_added, trans_val_removed, trans_val_modified, sort_by)
+         63         added_rows = get_added(df_old=df_old, df_new=df_new, unique_id=unique_id, trans_col=trans_col, trans_vaL=trans_val_added)
+         64         removed_rows = get_removed(df_old=df_old, df_new=df_new, unique_id=unique_id, trans_col=trans_col, trans_val=trans_val_removed)
+    ---> 65         modified_rows = get_modified(df_new=df_new, df_old=df_old, unique_id=unique_id, added_rows=added_rows, trans_col=trans_col, trans_val=trans_val_modified)
+         66         df_log = df_log.append(modified_rows, ignore_index=True)
+         67         df_log = df_log.drop_duplicates(subset=subset, keep="first")
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>date</th>
-      <th>id</th>
-      <th>quantity</th>
-      <th>color</th>
-      <th>transaction</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2013-11-24</td>
-      <td>001</td>
-      <td>22.0</td>
-      <td>Yellow</td>
-      <td>added</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2013-11-24</td>
-      <td>002</td>
-      <td>8.0</td>
-      <td>Orange</td>
-      <td>added</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2013-11-24</td>
-      <td>003</td>
-      <td>7.0</td>
-      <td>Red</td>
-      <td>added</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2013-11-24</td>
-      <td>004</td>
-      <td>10.0</td>
-      <td>Yellow</td>
-      <td>added</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2013-11-25</td>
-      <td>002</td>
-      <td>6.0</td>
-      <td>Orange</td>
-      <td>modified</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2013-11-24</td>
-      <td>004</td>
-      <td>5.0</td>
-      <td>Red</td>
-      <td>modified</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>2013-11-24</td>
-      <td>005</td>
-      <td>10.0</td>
-      <td>Pink</td>
-      <td>added</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2013-11-24</td>
-      <td>003</td>
-      <td>7.0</td>
-      <td>Red</td>
-      <td>removed</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+    NameError: name 'get_modified_rows' is not defined
 
 
 Finally, if we want to sort our log file by a particular column.
