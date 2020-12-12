@@ -579,7 +579,7 @@ df_log
       <td>added</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>4</th>
       <td>2013-11-24</td>
       <td>004</td>
       <td>5.0</td>
@@ -587,7 +587,7 @@ df_log
       <td>modified</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>5</th>
       <td>2013-11-24</td>
       <td>005</td>
       <td>10.0</td>
@@ -611,7 +611,7 @@ df_log
       <td>removed</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>6</th>
       <td>2013-11-25</td>
       <td>002</td>
       <td>6.0</td>

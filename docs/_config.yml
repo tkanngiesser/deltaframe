@@ -3,7 +3,7 @@ output: web
 topnav_title: deltaframe
 site_title: deltaframe
 company_name: Tino Kanngiesser
-description: Builds delta of two or more pandas dataframes
+description: Builds delta of two pandas dataframes
 # Set to false to disable KaTeX math
 use_math: true
 # Add Google analytics id if you have one and want to use it here
@@ -61,3 +61,6 @@ sidebars:
 
 theme: jekyll-theme-cayman
 baseurl: /deltaframe/
+
+default_badges:
+  colab: true
