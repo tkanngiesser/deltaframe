@@ -6,8 +6,8 @@ title: Deltaframe
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "Delta between two or more Pandas dataframes."
-description: "Delta between two or more Pandas dataframes."
+summary: "Build the delta between two Pandas dataframes."
+description: "Build the delta between two Pandas dataframes."
 nb_path: "index.ipynb"
 ---
 <!--
@@ -31,13 +31,6 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This file will become your README and also the index of your documentation.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Install">Install<a class="anchor-link" href="#Install"> </a></h2>
 </div>
 </div>
@@ -51,12 +44,7 @@ nb_path: "index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="How-to-use-deltaframe">How to use deltaframe<a class="anchor-link" href="#How-to-use-deltaframe"> </a></h2><p>First, lets create two dataframes (one from the previous day, one from the current day) - items have been</p>
-<ul>
-<li>added</li>
-<li>removed and</li>
-<li>modified</li>
-</ul>
+<h2 id="How-to-use-deltaframe">How to use deltaframe<a class="anchor-link" href="#How-to-use-deltaframe"> </a></h2><p>First, lets create two dataframes (e.g. transaction date from consecutive days).</p>
 
 </div>
 </div>
@@ -68,13 +56,13 @@ nb_path: "index.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df1</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_old</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s1">&#39;date&#39;</span><span class="p">:[</span><span class="s1">&#39;2013-11-24&#39;</span><span class="p">,</span><span class="s1">&#39;2013-11-24&#39;</span><span class="p">,</span><span class="s1">&#39;2013-11-24&#39;</span><span class="p">,</span><span class="s1">&#39;2013-11-24&#39;</span><span class="p">],</span>
     <span class="s1">&#39;id&#39;</span><span class="p">:[</span><span class="s1">&#39;001&#39;</span><span class="p">,</span><span class="s1">&#39;002&#39;</span><span class="p">,</span><span class="s1">&#39;003&#39;</span><span class="p">,</span><span class="s1">&#39;004&#39;</span><span class="p">],</span>
     <span class="s1">&#39;quantity&#39;</span><span class="p">:[</span><span class="mi">22</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span>
     <span class="s1">&#39;color&#39;</span><span class="p">:[</span><span class="s1">&#39;Yellow&#39;</span><span class="p">,</span><span class="s1">&#39;Orange&#39;</span><span class="p">,</span><span class="s1">&#39;Red&#39;</span><span class="p">,</span><span class="s1">&#39;Yellow&#39;</span><span class="p">],</span>
 <span class="p">})</span>
-<span class="n">df2</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s1">&#39;date&#39;</span><span class="p">:[</span><span class="s1">&#39;2013-11-24&#39;</span><span class="p">,</span><span class="s1">&#39;2013-11-25&#39;</span><span class="p">,</span><span class="s1">&#39;2013-11-24&#39;</span><span class="p">,</span><span class="s1">&#39;2013-11-24&#39;</span><span class="p">],</span>
     <span class="s1">&#39;id&#39;</span><span class="p">:[</span><span class="s1">&#39;001&#39;</span><span class="p">,</span><span class="s1">&#39;002&#39;</span><span class="p">,</span> <span class="s1">&#39;004&#39;</span><span class="p">,</span> <span class="s1">&#39;005&#39;</span><span class="p">],</span>
     <span class="s1">&#39;quantity&#39;</span><span class="p">:[</span><span class="mi">22</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span>
@@ -96,7 +84,7 @@ nb_path: "index.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df1</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_old</span>
 </pre></div>
 
     </div>
@@ -183,7 +171,7 @@ nb_path: "index.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_new</span>
 </pre></div>
 
     </div>
@@ -265,7 +253,8 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="First-look-at-entries-that-were-added-(in-df2-but-not-in-df1)">First look at entries that were added (in df2 but not in df1)<a class="anchor-link" href="#First-look-at-entries-that-were-added-(in-df2-but-not-in-df1)"> </a></h4>
+<p>Let's look at the main function <a href="/deltaframe/core.html#show_delta"><code>show_delta</code></a>first.</p>
+
 </div>
 </div>
 </div>
@@ -276,8 +265,51 @@ nb_path: "index.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">added_entries</span> <span class="o">=</span> <span class="n">get_added_entries</span><span class="p">(</span><span class="n">df_old</span><span class="o">=</span><span class="n">df1</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df2</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
-<span class="n">added_entries</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">show_delta</span><span class="p">(</span><span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">sort_by</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-32-7a7f960399f2&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>show_delta<span class="ansi-blue-fg">(</span>df_old<span class="ansi-blue-fg">=</span>df_old<span class="ansi-blue-fg">,</span> df_new<span class="ansi-blue-fg">=</span>df_new<span class="ansi-blue-fg">,</span> unique_id<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;id&#34;</span><span class="ansi-blue-fg">,</span> sort_by<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;date&#34;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;show_delta&#39; is not defined</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First look at entries that were added in df_new.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">added_rows</span> <span class="o">=</span> <span class="n">get_added_rows</span><span class="p">(</span><span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+<span class="n">added_rows</span>
 </pre></div>
 
     </div>
@@ -340,7 +372,8 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="What-about-removed-entries-(in-df1-but-not-any-longer-in-df2)">What about removed entries (in df1 but not any longer in df2)<a class="anchor-link" href="#What-about-removed-entries-(in-df1-but-not-any-longer-in-df2)"> </a></h4>
+<p>What about removed rows (in df_old but not any longer in df_new) ?</p>
+
 </div>
 </div>
 </div>
@@ -351,8 +384,8 @@ nb_path: "index.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">removed_entries</span> <span class="o">=</span> <span class="n">get_removed_entries</span><span class="p">(</span><span class="n">df_old</span><span class="o">=</span><span class="n">df1</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df2</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
-<span class="n">removed_entries</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">removed_rows</span> <span class="o">=</span> <span class="n">get_removed_rows</span><span class="p">(</span><span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+<span class="n">removed_rows</span>
 </pre></div>
 
     </div>
@@ -415,7 +448,8 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Awesome,-finally-we-check-for-the-modified-entries-(initially-not-considering-new-items)">Awesome, finally we check for the modified entries (initially not considering new items)<a class="anchor-link" href="#Awesome,-finally-we-check-for-the-modified-entries-(initially-not-considering-new-items)"> </a></h4>
+<p>Awesome, finally we check for the modified rows (also showing added rows).</p>
+
 </div>
 </div>
 </div>
@@ -426,8 +460,8 @@ nb_path: "index.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">modified_entries</span> <span class="o">=</span> <span class="n">get_modified_entries</span><span class="p">(</span><span class="n">df_old</span><span class="o">=</span><span class="n">df1</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df2</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
-<span class="n">modified_entries</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">modified_rows</span> <span class="o">=</span> <span class="n">get_modified_rows</span><span class="p">(</span><span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+<span class="n">modified_rows</span>
 </pre></div>
 
     </div>
@@ -506,7 +540,7 @@ nb_path: "index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Finally,-let's-build-a-logging-file-to-document-when-an-entry-been-added,-modified-or-deleted.">Finally, let's build a logging file to document when an entry been added, modified or deleted.<a class="anchor-link" href="#Finally,-let's-build-a-logging-file-to-document-when-an-entry-been-added,-modified-or-deleted."> </a></h4><p>Initially there is no log file so we set <code>df_log=None</code></p>
+<p>If we don't want to show added rows as modified, we can pass the added_rows dataframe created above.</p>
 
 </div>
 </div>
@@ -518,7 +552,92 @@ nb_path: "index.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_log</span> <span class="o">=</span> <span class="n">logging</span><span class="p">(</span><span class="n">df_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">df_old</span><span class="o">=</span><span class="n">df1</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df2</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">modified_rows</span> <span class="o">=</span> <span class="n">get_modified_rows</span><span class="p">(</span><span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">added_rows</span><span class="o">=</span><span class="n">added_rows</span><span class="p">)</span>
+<span class="n">modified_rows</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>id</th>
+      <th>quantity</th>
+      <th>color</th>
+      <th>transaction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>2013-11-25</td>
+      <td>002</td>
+      <td>6</td>
+      <td>Orange</td>
+      <td>modified</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2013-11-24</td>
+      <td>004</td>
+      <td>5</td>
+      <td>Red</td>
+      <td>modified</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finally, let's build a logging file to document when a row been added, modified or deleted.</p>
+<p>Initially there is no log file so we set <code>df_log=None</code>.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_log</span> <span class="o">=</span> <span class="n">logging</span><span class="p">(</span><span class="n">df_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
 <span class="n">df_log</span>
 </pre></div>
 
@@ -618,7 +737,7 @@ nb_path: "index.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_log</span> <span class="o">=</span> <span class="n">logging</span><span class="p">(</span><span class="n">df_log</span><span class="o">=</span><span class="n">df_log</span><span class="p">,</span> <span class="n">df_old</span><span class="o">=</span><span class="n">df1</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df2</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_log</span> <span class="o">=</span> <span class="n">logging</span><span class="p">(</span><span class="n">df_log</span><span class="o">=</span><span class="n">df_log</span><span class="p">,</span> <span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
 <span class="n">df_log</span>
 </pre></div>
 
@@ -750,7 +869,7 @@ nb_path: "index.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_log</span> <span class="o">=</span> <span class="n">logging</span><span class="p">(</span><span class="n">df_log</span><span class="o">=</span><span class="n">df_log</span><span class="p">,</span> <span class="n">df_old</span><span class="o">=</span><span class="n">df1</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df2</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">sort_by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_log</span> <span class="o">=</span> <span class="n">logging</span><span class="p">(</span><span class="n">df_log</span><span class="o">=</span><span class="n">df_log</span><span class="p">,</span> <span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">sort_by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
 <span class="n">df_log</span>
 </pre></div>
 
@@ -824,7 +943,7 @@ nb_path: "index.ipynb"
       <td>added</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>5</th>
       <td>2013-11-24</td>
       <td>004</td>
       <td>5.0</td>
@@ -832,7 +951,7 @@ nb_path: "index.ipynb"
       <td>modified</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>6</th>
       <td>2013-11-24</td>
       <td>005</td>
       <td>10.0</td>
@@ -856,7 +975,7 @@ nb_path: "index.ipynb"
       <td>removed</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>4</th>
       <td>2013-11-25</td>
       <td>002</td>
       <td>6.0</td>
