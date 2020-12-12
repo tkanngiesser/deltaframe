@@ -1,5 +1,4 @@
 # deltaframe
-![alt text](img/../docs/images/logo.png)
 
 > Show and log the delta between two Pandas dataframes.
 
