@@ -814,23 +814,103 @@ nb_path: "index.ipynb"
 
 <div class="output_area">
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-26-b1a66c30bcc2&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>df_log <span class="ansi-blue-fg">=</span> log_delta<span class="ansi-blue-fg">(</span>df_log<span class="ansi-blue-fg">=</span>df_log<span class="ansi-blue-fg">,</span> df_old<span class="ansi-blue-fg">=</span>df_old<span class="ansi-blue-fg">,</span> df_new<span class="ansi-blue-fg">=</span>df_new<span class="ansi-blue-fg">,</span> unique_id<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;id&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> df_log
 
-<span class="ansi-green-fg">~/Repos/deltaframe/deltaframe/core.py</span> in <span class="ansi-cyan-fg">log_delta</span><span class="ansi-blue-fg">(df_log, df_old, df_new, unique_id, trans_col, trans_val_added, trans_val_removed, trans_val_modified, sort_by)</span>
-<span class="ansi-green-intense-fg ansi-bold">     63</span>         added_rows <span class="ansi-blue-fg">=</span> get_added<span class="ansi-blue-fg">(</span>df_old<span class="ansi-blue-fg">=</span>df_old<span class="ansi-blue-fg">,</span> df_new<span class="ansi-blue-fg">=</span>df_new<span class="ansi-blue-fg">,</span> unique_id<span class="ansi-blue-fg">=</span>unique_id<span class="ansi-blue-fg">,</span> trans_col<span class="ansi-blue-fg">=</span>trans_col<span class="ansi-blue-fg">,</span> trans_vaL<span class="ansi-blue-fg">=</span>trans_val_added<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     64</span>         removed_rows <span class="ansi-blue-fg">=</span> get_removed<span class="ansi-blue-fg">(</span>df_old<span class="ansi-blue-fg">=</span>df_old<span class="ansi-blue-fg">,</span> df_new<span class="ansi-blue-fg">=</span>df_new<span class="ansi-blue-fg">,</span> unique_id<span class="ansi-blue-fg">=</span>unique_id<span class="ansi-blue-fg">,</span> trans_col<span class="ansi-blue-fg">=</span>trans_col<span class="ansi-blue-fg">,</span> trans_val<span class="ansi-blue-fg">=</span>trans_val_removed<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">---&gt; 65</span><span class="ansi-red-fg">         </span>modified_rows <span class="ansi-blue-fg">=</span> get_modified<span class="ansi-blue-fg">(</span>df_new<span class="ansi-blue-fg">=</span>df_new<span class="ansi-blue-fg">,</span> df_old<span class="ansi-blue-fg">=</span>df_old<span class="ansi-blue-fg">,</span> unique_id<span class="ansi-blue-fg">=</span>unique_id<span class="ansi-blue-fg">,</span> added_rows<span class="ansi-blue-fg">=</span>added_rows<span class="ansi-blue-fg">,</span> trans_col<span class="ansi-blue-fg">=</span>trans_col<span class="ansi-blue-fg">,</span> trans_val<span class="ansi-blue-fg">=</span>trans_val_modified<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     66</span>         df_log <span class="ansi-blue-fg">=</span> df_log<span class="ansi-blue-fg">.</span>append<span class="ansi-blue-fg">(</span>modified_rows<span class="ansi-blue-fg">,</span> ignore_index<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     67</span>         df_log <span class="ansi-blue-fg">=</span> df_log<span class="ansi-blue-fg">.</span>drop_duplicates<span class="ansi-blue-fg">(</span>subset<span class="ansi-blue-fg">=</span>subset<span class="ansi-blue-fg">,</span> keep<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#34;first&#34;</span><span class="ansi-blue-fg">)</span>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="ansi-red-fg">NameError</span>: name &#39;get_modified_rows&#39; is not defined</pre>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>id</th>
+      <th>quantity</th>
+      <th>color</th>
+      <th>transaction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2013-11-24</td>
+      <td>001</td>
+      <td>22.0</td>
+      <td>Yellow</td>
+      <td>added</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2013-11-24</td>
+      <td>002</td>
+      <td>8.0</td>
+      <td>Orange</td>
+      <td>added</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2013-11-24</td>
+      <td>003</td>
+      <td>7.0</td>
+      <td>Red</td>
+      <td>added</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2013-11-24</td>
+      <td>004</td>
+      <td>10.0</td>
+      <td>Yellow</td>
+      <td>added</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2013-11-25</td>
+      <td>002</td>
+      <td>6.0</td>
+      <td>Orange</td>
+      <td>modified</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2013-11-24</td>
+      <td>004</td>
+      <td>5.0</td>
+      <td>Red</td>
+      <td>modified</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2013-11-24</td>
+      <td>005</td>
+      <td>10.0</td>
+      <td>Pink</td>
+      <td>added</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2013-11-24</td>
+      <td>003</td>
+      <td>7.0</td>
+      <td>Red</td>
+      <td>removed</td>
+    </tr>
+  </tbody>
+</table>
 </div>
+</div>
+
 </div>
 
 </div>

@@ -8,7 +8,7 @@ import numpy as np
 
 # Cell
 def get_added(df_old, df_new, unique_id, trans_col="transaction", trans_vaL="added"):
-    """get rows in df2 which are not in df1"""
+    """get rows in df_new which are not in df_old"""
     cols = list(df_old.columns)
     new_rows = (pd
                 .merge(df_old, df_new, how="outer", on=unique_id, indicator=True, suffixes=("_foo",""))
@@ -32,7 +32,7 @@ def get_removed(df_old, df_new, unique_id, trans_col="transaction", trans_val="r
 
 # Cell
 def get_modified(df_old, df_new, unique_id, added_rows=None, trans_col="transaction", trans_val="modified"):
-    """Returns the modified rows"""
+    """Returns the modified rows in df_new"""
     cols = list(df_new.columns)
     if added_rows is not None:
         df_new = df_new[~df_new.isin(list(added_rows[unique_id].values))].dropna()

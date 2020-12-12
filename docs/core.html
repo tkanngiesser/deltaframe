@@ -49,7 +49,7 @@ nb_path: "00_core.ipynb"
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="get_added" class="doc_header"><code>get_added</code><a href="https://github.com/tkanngiesser/deltaframe/tree/master/deltaframe/core.py#L10" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_added</code>(<strong><code>df_old</code></strong>, <strong><code>df_new</code></strong>, <strong><code>unique_id</code></strong>, <strong><code>trans_col</code></strong>=<em><code>'transaction'</code></em>, <strong><code>trans_vaL</code></strong>=<em><code>'added'</code></em>)</p>
 </blockquote>
-<p>get rows in df2 which are not in df1</p>
+<p>get rows in df_new which are not in df_old</p>
 
 </div>
 
@@ -360,7 +360,7 @@ nb_path: "00_core.ipynb"
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="get_modified" class="doc_header"><code>get_modified</code><a href="https://github.com/tkanngiesser/deltaframe/tree/master/deltaframe/core.py#L34" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_modified</code>(<strong><code>df_old</code></strong>, <strong><code>df_new</code></strong>, <strong><code>unique_id</code></strong>, <strong><code>added_rows</code></strong>=<em><code>None</code></em>, <strong><code>trans_col</code></strong>=<em><code>'transaction'</code></em>, <strong><code>trans_val</code></strong>=<em><code>'modified'</code></em>)</p>
 </blockquote>
-<p>Returns the modified rows</p>
+<p>Returns the modified rows in df_new</p>
 
 </div>
 
