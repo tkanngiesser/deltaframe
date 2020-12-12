@@ -692,7 +692,7 @@ nb_path: "00_core.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_log</span> <span class="o">=</span> <span class="n">logging</span><span class="p">(</span><span class="n">df_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_log</span> <span class="o">=</span> <span class="n">log_delta</span><span class="p">(</span><span class="n">df_log</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
 
 <span class="n">logged_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;date&quot;</span><span class="p">:[</span><span class="s2">&quot;2013-11-24&quot;</span><span class="p">,</span> <span class="s2">&quot;2013-11-24&quot;</span><span class="p">,</span> <span class="s2">&quot;2013-11-24&quot;</span><span class="p">,</span> <span class="s2">&quot;2013-11-14&quot;</span><span class="p">],</span><span class="s2">&quot;id&quot;</span><span class="p">:[</span><span class="s2">&quot;001&quot;</span><span class="p">,</span> <span class="s2">&quot;002&quot;</span><span class="p">,</span> <span class="s2">&quot;003&quot;</span><span class="p">,</span> <span class="s2">&quot;004&quot;</span><span class="p">],</span><span class="s2">&quot;quantity&quot;</span><span class="p">:[</span><span class="mi">22</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="s2">&quot;color&quot;</span><span class="p">:[</span><span class="s2">&quot;Yellow&quot;</span><span class="p">,</span> <span class="s2">&quot;Orange&quot;</span><span class="p">,</span> <span class="s2">&quot;Red&quot;</span><span class="p">,</span> <span class="s2">&quot;Yellow&quot;</span><span class="p">],</span><span class="s2">&quot;transaction&quot;</span><span class="p">:[</span><span class="s2">&quot;added&quot;</span><span class="p">,</span> <span class="s2">&quot;added&quot;</span><span class="p">,</span> <span class="s2">&quot;added&quot;</span><span class="p">,</span> <span class="s2">&quot;added&quot;</span><span class="p">]})</span>
 
@@ -713,7 +713,7 @@ nb_path: "00_core.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_log</span> <span class="o">=</span> <span class="n">logging</span><span class="p">(</span><span class="n">df_log</span><span class="o">=</span><span class="n">df_log</span><span class="p">,</span> <span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_log</span> <span class="o">=</span> <span class="n">log_delta</span><span class="p">(</span><span class="n">df_log</span><span class="o">=</span><span class="n">df_log</span><span class="p">,</span> <span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
 <span class="n">df_log</span>
 </pre></div>
 
@@ -937,6 +937,14 @@ nb_path: "00_core.ipynb"
     </tr>
     <tr>
       <th>8</th>
+      <td>2020-11-24</td>
+      <td>005</td>
+      <td>10.0</td>
+      <td>Pink</td>
+      <td>added</td>
+    </tr>
+    <tr>
+      <th>9</th>
       <td>2020-11-24</td>
       <td>003</td>
       <td>7.0</td>

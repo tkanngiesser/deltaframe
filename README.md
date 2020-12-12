@@ -1,5 +1,5 @@
 # Deltaframe
-> Build the delta between two Pandas dataframes.
+> Show and log the delta between two Pandas dataframes.
 
 
 ## Install
@@ -157,25 +157,84 @@ df_new
 
 
 
-Let's look at the main function `show_delta`first.
+#### Show the delta
+
+Let's look at the main function `show_delta` first.
 
 ```
 show_delta(df_old=df_old, df_new=df_new, unique_id="id", sort_by="date")
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-32-7a7f960399f2> in <module>
-    ----> 1 show_delta(df_old=df_old, df_new=df_new, unique_id="id", sort_by="date")
-    
-
-    NameError: name 'show_delta' is not defined
 
 
-First look at entries that were added in df_new.
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>id</th>
+      <th>quantity</th>
+      <th>color</th>
+      <th>transaction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>2013-11-24</td>
+      <td>005</td>
+      <td>10.0</td>
+      <td>Pink</td>
+      <td>added</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2013-11-24</td>
+      <td>003</td>
+      <td>7.0</td>
+      <td>Red</td>
+      <td>removed</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2013-11-24</td>
+      <td>004</td>
+      <td>5.0</td>
+      <td>Red</td>
+      <td>modified</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2013-11-25</td>
+      <td>002</td>
+      <td>6.0</td>
+      <td>Orange</td>
+      <td>modified</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+#### Show added, removed and modified rows.
+
+It's also possible to just get information about added, removed or modified rows as shown in the following:
 
 ```
 added_rows = get_added_rows(df_old=df_old, df_new=df_new, unique_id="id")
@@ -399,12 +458,13 @@ modified_rows
 
 
 
-Finally, let's build a logging file to document when a row been added, modified or deleted.
+#### Logging the delta
+Finally, it's also possible to log the delta (e.g. transactions over time). 
 
 Initially there is no log file so we set `df_log=None`.
 
 ```
-df_log = logging(df_log=None, df_old=df_old, df_new=df_new, unique_id="id")
+df_log = log_delta(df_log=None, df_old=df_old, df_new=df_new, unique_id="id")
 df_log
 ```
 
@@ -478,7 +538,7 @@ df_log
 When there's an existing log file we happily pass it to our logging function...
 
 ```
-df_log = logging(df_log=df_log, df_old=df_old, df_new=df_new, unique_id="id")
+df_log = log_delta(df_log=df_log, df_old=df_old, df_new=df_new, unique_id="id")
 df_log
 ```
 
@@ -584,7 +644,7 @@ df_log
 Finally, if we want to sort our log file by a particular column.
 
 ```
-df_log = logging(df_log=df_log, df_old=df_old, df_new=df_new, unique_id="id", sort_by=["date"])
+df_log = log_delta(df_log=df_log, df_old=df_old, df_new=df_new, unique_id="id", sort_by=["date"])
 df_log
 ```
 
