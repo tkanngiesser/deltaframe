@@ -12,5 +12,5 @@
 
 ## How to use deltaframe
 
-Please check the [documentation]("https://tkanngiesser.github.io/deltaframe/")
+Please check the [documentation](https://tkanngiesser.github.io/deltaframe/)
 
