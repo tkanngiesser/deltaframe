@@ -339,7 +339,7 @@ trans_val: str
     name of value to reflect transaction status (default is "removed")
 </code></pre>
 <h2 id="Returns">Returns<a class="anchor-link" href="#Returns"> </a></h2><p>pd.DataFrame
-    dataframe that contains added rows</p>
+    dataframe that contains removed rows</p>
 
 </div>
 
@@ -406,7 +406,7 @@ trans_val: str
     name of value to reflect transaction status (default is "modified")
 </code></pre>
 <h2 id="Returns">Returns<a class="anchor-link" href="#Returns"> </a></h2><p>pd.DataFrame
-    dataframe that contains added rows</p>
+    dataframe that contains modified rows</p>
 
 </div>
 
@@ -480,7 +480,7 @@ trans_val: str
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="get_delta" class="doc_header"><code>get_delta</code><a href="https://github.com/tkanngiesser/deltaframe/tree/master/deltaframe/core.py#L106" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_delta</code>(<strong><code>df_old</code></strong>, <strong><code>df_new</code></strong>, <strong><code>unique_id</code></strong>, <strong><code>sort_by</code></strong>=<em><code>None</code></em>, <strong><code>trans_col</code></strong>=<em><code>'transaction'</code></em>, <strong><code>trans_val_added</code></strong>=<em><code>'added'</code></em>, <strong><code>trans_val_removed</code></strong>=<em><code>'removed'</code></em>, <strong><code>trans_val_modified</code></strong>=<em><code>'modified'</code></em>)</p>
 </blockquote>
-<p>Get delta (added, removed, modified) betwen df_old and df_new</p>
+<p>Returns delta (added, removed, modified) betwen df_old and df_new</p>
 <h2 id="Parameters">Parameters<a class="anchor-link" href="#Parameters"> </a></h2>
 <pre><code>df_old : pd.DataFrame
     dataframe with previous information
@@ -488,6 +488,8 @@ df_new: pd.DataFrame
     dataframe with new information
 unique_id: str or list
     unique identifier(s)
+sort_by: str or list
+    cols to sort result
 added_rows: pd.DataFrame
     added rows from calling get_added function
 trans_col: str
@@ -500,7 +502,7 @@ trans_val_modified: str
     name of value to reflect transaction status (default is "modified")
 </code></pre>
 <h2 id="Returns">Returns<a class="anchor-link" href="#Returns"> </a></h2><p>pd.DataFrame
-    dataframe that contains added delta between df_old and df_new</p>
+    dataframe that contains delta between df_old and df_new</p>
 
 </div>
 
@@ -530,8 +532,33 @@ trans_val_modified: str
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="log_delta" class="doc_header"><code>log_delta</code><a href="https://github.com/tkanngiesser/deltaframe/tree/master/deltaframe/core.py#L142" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>log_delta</code>(<strong><code>df_log</code></strong>, <strong><code>df_old</code></strong>, <strong><code>df_new</code></strong>, <strong><code>unique_id</code></strong>, <strong><code>trans_col</code></strong>=<em><code>'transaction'</code></em>, <strong><code>trans_val_added</code></strong>=<em><code>'added'</code></em>, <strong><code>trans_val_removed</code></strong>=<em><code>'removed'</code></em>, <strong><code>trans_val_modified</code></strong>=<em><code>'modified'</code></em>, <strong><code>sort_by</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="log_delta" class="doc_header"><code>log_delta</code><a href="https://github.com/tkanngiesser/deltaframe/tree/master/deltaframe/core.py#L144" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>log_delta</code>(<strong><code>df_log</code></strong>, <strong><code>df_old</code></strong>, <strong><code>df_new</code></strong>, <strong><code>unique_id</code></strong>, <strong><code>sort_by</code></strong>=<em><code>None</code></em>, <strong><code>trans_col</code></strong>=<em><code>'transaction'</code></em>, <strong><code>trans_val_added</code></strong>=<em><code>'added'</code></em>, <strong><code>trans_val_removed</code></strong>=<em><code>'removed'</code></em>, <strong><code>trans_val_modified</code></strong>=<em><code>'modified'</code></em>)</p>
 </blockquote>
+<p>Returns logged delta (added, removed, modified) betwen df_old and df_new</p>
+<h2 id="Parameters">Parameters<a class="anchor-link" href="#Parameters"> </a></h2>
+<pre><code>df_log : pd.DataFrame
+    dataframe with logged delta - if no log exists yet set df_log=None
+df_old : pd.DataFrame
+    dataframe with previous information
+df_new: pd.DataFrame
+    dataframe with new information
+unique_id: str or list
+    unique identifier(s)
+sort_by: str or list
+    cols to sort result
+added_rows: pd.DataFrame
+    added rows from calling get_added function
+trans_col: str
+    name of column to track transaction (default is "transaction")
+trans_val_added: str
+    name of value to reflect transaction status (default is "added")
+trans_val_removed: str
+    name of value to reflect transaction status (default is "removed")
+trans_val_modified: str
+    name of value to reflect transaction status (default is "modified")
+</code></pre>
+<h2 id="Returns">Returns<a class="anchor-link" href="#Returns"> </a></h2><p>pd.DataFrame
+    dataframe that contains logged delta</p>
 
 </div>
 

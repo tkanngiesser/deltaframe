@@ -57,7 +57,7 @@ def get_removed(df_old, df_new, unique_id, trans_col="transaction", trans_val="r
     Returns
     -------
     pd.DataFrame
-        dataframe that contains added rows
+        dataframe that contains removed rows
     """
 
     cols = list(df_old.columns)
@@ -90,7 +90,7 @@ def get_modified(df_old, df_new, unique_id, added_rows=None, trans_col="transact
     Returns
     -------
     pd.DataFrame
-        dataframe that contains added rows
+        dataframe that contains modified rows
     """
 
     cols = list(df_new.columns)
@@ -104,7 +104,7 @@ def get_modified(df_old, df_new, unique_id, added_rows=None, trans_col="transact
 
 # Cell
 def get_delta(df_old, df_new, unique_id, sort_by=None, trans_col="transaction", trans_val_added="added", trans_val_removed="removed", trans_val_modified="modified"):
-    """Get delta (added, removed, modified) betwen df_old and df_new
+    """Returns delta (added, removed, modified) betwen df_old and df_new
 
     Parameters
     ----------
@@ -114,6 +114,8 @@ def get_delta(df_old, df_new, unique_id, sort_by=None, trans_col="transaction", 
             dataframe with new information
         unique_id: str or list
             unique identifier(s)
+        sort_by: str or list
+            cols to sort result
         added_rows: pd.DataFrame
             added rows from calling get_added function
         trans_col: str
@@ -127,7 +129,7 @@ def get_delta(df_old, df_new, unique_id, sort_by=None, trans_col="transaction", 
     Returns
     -------
     pd.DataFrame
-        dataframe that contains added delta between df_old and df_new
+        dataframe that contains delta between df_old and df_new
     """
 
     added_rows = get_added(df_old=df_old, df_new=df_new, unique_id="id",trans_col=trans_col, trans_vaL=trans_val_added)
@@ -139,9 +141,39 @@ def get_delta(df_old, df_new, unique_id, sort_by=None, trans_col="transaction", 
     return df
 
 # Cell
-def log_delta(df_log, df_old, df_new, unique_id, trans_col="transaction", trans_val_added="added", trans_val_removed="removed", trans_val_modified="modified", sort_by=None):
+def log_delta(df_log, df_old, df_new, unique_id, sort_by=None, trans_col="transaction", trans_val_added="added", trans_val_removed="removed", trans_val_modified="modified"):
+    """Returns logged delta (added, removed, modified) betwen df_old and df_new
+
+    Parameters
+    ----------
+        df_log : pd.DataFrame
+            dataframe with logged delta - if no log exists yet set df_log=None
+        df_old : pd.DataFrame
+            dataframe with previous information
+        df_new: pd.DataFrame
+            dataframe with new information
+        unique_id: str or list
+            unique identifier(s)
+        sort_by: str or list
+            cols to sort result
+        added_rows: pd.DataFrame
+            added rows from calling get_added function
+        trans_col: str
+            name of column to track transaction (default is "transaction")
+        trans_val_added: str
+            name of value to reflect transaction status (default is "added")
+        trans_val_removed: str
+            name of value to reflect transaction status (default is "removed")
+        trans_val_modified: str
+            name of value to reflect transaction status (default is "modified")
+    Returns
+    -------
+    pd.DataFrame
+        dataframe that contains logged delta
+    """
+
     if df_log is None:
-        df_log = df_old#.copy()
+        df_log = df_old
         df_log[trans_col] = trans_val_added
     else:
         subset = list(df_log.columns)
