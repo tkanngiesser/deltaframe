@@ -1,5 +1,5 @@
 # deltaframe
-> A convenient way to manage to show and log the delta between two Pandas dataframes.
+> A convenient way to identify and log the delta between two Pandas dataframes.
 
 
 ## Install
@@ -13,4 +13,3 @@
 ## How to use deltaframe
 
 Please check the [documentation](https://tkanngiesser.github.io/deltaframe/)
-

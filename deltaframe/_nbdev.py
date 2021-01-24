@@ -3,10 +3,11 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"get_added": "00_core.ipynb",
-         "get_removed": "00_core.ipynb",
+         "get_deleted": "00_core.ipynb",
          "get_modified": "00_core.ipynb",
          "get_delta": "00_core.ipynb",
-         "log_delta": "00_core.ipynb"}
+         "log_delta": "00_core.ipynb",
+         "build_latest": "00_core.ipynb"}
 
 modules = ["core.py"]
 

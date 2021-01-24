@@ -323,9 +323,9 @@ trans_val: str
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_removed" class="doc_header"><code>get_removed</code><a href="https://github.com/tkanngiesser/deltaframe/tree/master/deltaframe/core.py#L42" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_removed</code>(<strong><code>df_old</code></strong>, <strong><code>df_new</code></strong>, <strong><code>unique_id</code></strong>, <strong><code>trans_col</code></strong>=<em><code>'transaction'</code></em>, <strong><code>trans_val</code></strong>=<em><code>'removed'</code></em>)</p>
+<h4 id="get_deleted" class="doc_header"><code>get_deleted</code><a href="https://github.com/tkanngiesser/deltaframe/tree/master/deltaframe/core.py#L42" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_deleted</code>(<strong><code>df_old</code></strong>, <strong><code>df_new</code></strong>, <strong><code>unique_id</code></strong>, <strong><code>trans_col</code></strong>=<em><code>'transaction'</code></em>, <strong><code>trans_val</code></strong>=<em><code>'deleted'</code></em>)</p>
 </blockquote>
-<p>Returns the removed rows that are not any longer in df_new</p>
+<p>Returns the deleted rows that are not any longer in df_new</p>
 <h2 id="Parameters">Parameters<a class="anchor-link" href="#Parameters"> </a></h2>
 <pre><code>df_old : pd.DataFrame
     dataframe with previous information
@@ -336,10 +336,10 @@ unique_id: str or list
 trans_col: str
     name of column to track transaction (default is "transaction")
 trans_val: str
-    name of value to reflect transaction status (default is "removed")
+    name of value to reflect transaction status (default is "deleted")
 </code></pre>
 <h2 id="Returns">Returns<a class="anchor-link" href="#Returns"> </a></h2><p>pd.DataFrame
-    dataframe that contains removed rows</p>
+    dataframe that contains deleted rows</p>
 
 </div>
 
@@ -365,9 +365,9 @@ trans_val: str
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">removed_rows</span> <span class="o">=</span> <span class="n">get_removed</span><span class="p">(</span><span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
-<span class="n">df_removed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;date&quot;</span><span class="p">:[</span><span class="s2">&quot;2013-11-24&quot;</span><span class="p">],</span><span class="s2">&quot;id&quot;</span><span class="p">:[</span><span class="s2">&quot;003&quot;</span><span class="p">],</span><span class="s2">&quot;quantity&quot;</span><span class="p">:[</span><span class="mi">7</span><span class="p">],</span><span class="s2">&quot;color&quot;</span><span class="p">:[</span><span class="s2">&quot;Red&quot;</span><span class="p">],</span><span class="s2">&quot;transaction&quot;</span><span class="p">:[</span><span class="s2">&quot;removed&quot;</span><span class="p">]})</span>
-<span class="n">test_eq</span><span class="p">(</span><span class="n">removed_rows</span><span class="p">,</span> <span class="n">df_removed</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">deleted_rows</span> <span class="o">=</span> <span class="n">get_deleted</span><span class="p">(</span><span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+<span class="n">df_deleted</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;date&quot;</span><span class="p">:[</span><span class="s2">&quot;2013-11-24&quot;</span><span class="p">],</span><span class="s2">&quot;id&quot;</span><span class="p">:[</span><span class="s2">&quot;003&quot;</span><span class="p">],</span><span class="s2">&quot;quantity&quot;</span><span class="p">:[</span><span class="mi">7</span><span class="p">],</span><span class="s2">&quot;color&quot;</span><span class="p">:[</span><span class="s2">&quot;Red&quot;</span><span class="p">],</span><span class="s2">&quot;transaction&quot;</span><span class="p">:[</span><span class="s2">&quot;deleted&quot;</span><span class="p">]})</span>
+<span class="n">test_eq</span><span class="p">(</span><span class="n">deleted_rows</span><span class="p">,</span> <span class="n">df_deleted</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -478,9 +478,9 @@ trans_val: str
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_delta" class="doc_header"><code>get_delta</code><a href="https://github.com/tkanngiesser/deltaframe/tree/master/deltaframe/core.py#L106" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_delta</code>(<strong><code>df_old</code></strong>, <strong><code>df_new</code></strong>, <strong><code>unique_id</code></strong>, <strong><code>sort_by</code></strong>=<em><code>None</code></em>, <strong><code>trans_col</code></strong>=<em><code>'transaction'</code></em>, <strong><code>trans_val_added</code></strong>=<em><code>'added'</code></em>, <strong><code>trans_val_removed</code></strong>=<em><code>'removed'</code></em>, <strong><code>trans_val_modified</code></strong>=<em><code>'modified'</code></em>)</p>
+<h4 id="get_delta" class="doc_header"><code>get_delta</code><a href="https://github.com/tkanngiesser/deltaframe/tree/master/deltaframe/core.py#L106" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_delta</code>(<strong><code>df_old</code></strong>, <strong><code>df_new</code></strong>, <strong><code>unique_id</code></strong>, <strong><code>sort_by</code></strong>=<em><code>None</code></em>, <strong><code>trans_col</code></strong>=<em><code>'transaction'</code></em>, <strong><code>trans_val_added</code></strong>=<em><code>'added'</code></em>, <strong><code>trans_val_deleted</code></strong>=<em><code>'deleted'</code></em>, <strong><code>trans_val_modified</code></strong>=<em><code>'modified'</code></em>)</p>
 </blockquote>
-<p>Returns delta (added, removed, modified) betwen df_old and df_new</p>
+<p>Returns delta (added, deleted, modified) betwen df_old and df_new</p>
 <h2 id="Parameters">Parameters<a class="anchor-link" href="#Parameters"> </a></h2>
 <pre><code>df_old : pd.DataFrame
     dataframe with previous information
@@ -496,8 +496,8 @@ trans_col: str
     name of column to track transaction (default is "transaction")
 trans_val_added: str
     name of value to reflect transaction status (default is "added")
-trans_val_removed: str
-    name of value to reflect transaction status (default is "removed")
+trans_val_deleted: str
+    name of value to reflect transaction status (default is "deleted")
 trans_val_modified: str
     name of value to reflect transaction status (default is "modified")
 </code></pre>
@@ -532,9 +532,9 @@ trans_val_modified: str
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="log_delta" class="doc_header"><code>log_delta</code><a href="https://github.com/tkanngiesser/deltaframe/tree/master/deltaframe/core.py#L144" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>log_delta</code>(<strong><code>df_log</code></strong>, <strong><code>df_old</code></strong>, <strong><code>df_new</code></strong>, <strong><code>unique_id</code></strong>, <strong><code>sort_by</code></strong>=<em><code>None</code></em>, <strong><code>trans_col</code></strong>=<em><code>'transaction'</code></em>, <strong><code>trans_val_added</code></strong>=<em><code>'added'</code></em>, <strong><code>trans_val_removed</code></strong>=<em><code>'removed'</code></em>, <strong><code>trans_val_modified</code></strong>=<em><code>'modified'</code></em>)</p>
+<h4 id="log_delta" class="doc_header"><code>log_delta</code><a href="https://github.com/tkanngiesser/deltaframe/tree/master/deltaframe/core.py#L144" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>log_delta</code>(<strong><code>df_log</code></strong>, <strong><code>df_old</code></strong>, <strong><code>df_new</code></strong>, <strong><code>unique_id</code></strong>, <strong><code>sort_by</code></strong>=<em><code>None</code></em>, <strong><code>trans_col</code></strong>=<em><code>'transaction'</code></em>, <strong><code>trans_val_added</code></strong>=<em><code>'added'</code></em>, <strong><code>trans_val_deleted</code></strong>=<em><code>'deleted'</code></em>, <strong><code>trans_val_modified</code></strong>=<em><code>'modified'</code></em>)</p>
 </blockquote>
-<p>Returns logged delta (added, removed, modified) betwen df_old and df_new</p>
+<p>Returns logged delta (added, deleted, modified) betwen df_old and df_new</p>
 <h2 id="Parameters">Parameters<a class="anchor-link" href="#Parameters"> </a></h2>
 <pre><code>df_log : pd.DataFrame
     dataframe with logged delta - if no log exists yet set df_log=None
@@ -552,8 +552,8 @@ trans_col: str
     name of column to track transaction (default is "transaction")
 trans_val_added: str
     name of value to reflect transaction status (default is "added")
-trans_val_removed: str
-    name of value to reflect transaction status (default is "removed")
+trans_val_deleted: str
+    name of value to reflect transaction status (default is "deleted")
 trans_val_modified: str
     name of value to reflect transaction status (default is "modified")
 </code></pre>
@@ -639,7 +639,7 @@ trans_val_modified: str
       <td>003</td>
       <td>7.0</td>
       <td>Red</td>
-      <td>removed</td>
+      <td>deleted</td>
     </tr>
     <tr>
       <th>4</th>
@@ -740,7 +740,7 @@ trans_val_modified: str
       <td>003</td>
       <td>7.0</td>
       <td>Red</td>
-      <td>removed</td>
+      <td>deleted</td>
     </tr>
     <tr>
       <th>5</th>
@@ -918,7 +918,7 @@ trans_val_modified: str
       <td>003</td>
       <td>7.0</td>
       <td>Red</td>
-      <td>removed</td>
+      <td>deleted</td>
     </tr>
   </tbody>
 </table>
@@ -1043,7 +1043,7 @@ trans_val_modified: str
       <td>003</td>
       <td>7.0</td>
       <td>Red</td>
-      <td>removed</td>
+      <td>deleted</td>
     </tr>
     <tr>
       <th>4</th>
@@ -1058,6 +1058,394 @@ trans_val_modified: str
       <td>2020-11-25</td>
       <td>001</td>
       <td>22.0</td>
+      <td>Yellow</td>
+      <td>modified</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">modified_rows</span> <span class="o">=</span> <span class="n">get_modified</span><span class="p">(</span><span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">added_rows</span><span class="o">=</span><span class="n">added_rows</span><span class="p">)</span>
+<span class="n">modified_rows</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>id</th>
+      <th>quantity</th>
+      <th>color</th>
+      <th>transaction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>2020-11-25</td>
+      <td>002</td>
+      <td>6</td>
+      <td>Orange</td>
+      <td>modified</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2020-11-24</td>
+      <td>004</td>
+      <td>5</td>
+      <td>Red</td>
+      <td>modified</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2020-11-25</td>
+      <td>001</td>
+      <td>22</td>
+      <td>Yellow</td>
+      <td>modified</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_old</span><span class="p">[</span><span class="n">df_old</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">modified_rows</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">))]</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>id</th>
+      <th>quantity</th>
+      <th>color</th>
+      <th>transaction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-11-24</td>
+      <td>001</td>
+      <td>22</td>
+      <td>Yellow</td>
+      <td>added</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-11-24</td>
+      <td>002</td>
+      <td>8</td>
+      <td>Orange</td>
+      <td>added</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-11-24</td>
+      <td>004</td>
+      <td>10</td>
+      <td>Yellow</td>
+      <td>added</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="build_latest" class="doc_header"><code>build_latest</code><a href="https://github.com/tkanngiesser/deltaframe/tree/master/deltaframe/core.py#L193" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>build_latest</code>(<strong><code>df_old</code></strong>, <strong><code>df_new</code></strong>, <strong><code>unique_id</code></strong>, <strong><code>sort_by</code></strong>=<em><code>None</code></em>, <strong><code>trans_col</code></strong>=<em><code>'transaction'</code></em>)</p>
+</blockquote>
+<p>Returns logged the latest dataframe based on changes from new dataframe (added, removed, modified)</p>
+<h2 id="Parameters">Parameters<a class="anchor-link" href="#Parameters"> </a></h2>
+<pre><code>df_old : pd.DataFrame
+    dataframe with previous information
+df_new: pd.DataFrame
+    dataframe with new information
+unique_id: str or list
+    unique identifier(s)
+sort_by: str or list
+    cols to sort result
+trans_col: str
+    name of column to track transaction (default is "transaction")
+</code></pre>
+<h2 id="Returns">Returns<a class="anchor-link" href="#Returns"> </a></h2><p>pd.DataFrame
+    dataframe that contains latest state</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">build_latest</span><span class="p">(</span><span class="n">df_old</span><span class="o">=</span><span class="n">df_old</span><span class="p">,</span> <span class="n">df_new</span><span class="o">=</span><span class="n">df_new</span><span class="p">,</span> <span class="n">unique_id</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">sort_by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">])</span>
+<span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>id</th>
+      <th>quantity</th>
+      <th>color</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>2020-11-24</td>
+      <td>005</td>
+      <td>10.0</td>
+      <td>Pink</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2020-11-24</td>
+      <td>004</td>
+      <td>5.0</td>
+      <td>Red</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-11-25</td>
+      <td>002</td>
+      <td>6.0</td>
+      <td>Orange</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2020-11-25</td>
+      <td>001</td>
+      <td>22.0</td>
+      <td>Yellow</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">modified_rows</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>id</th>
+      <th>quantity</th>
+      <th>color</th>
+      <th>transaction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>2020-11-25</td>
+      <td>002</td>
+      <td>6</td>
+      <td>Orange</td>
+      <td>modified</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2020-11-24</td>
+      <td>004</td>
+      <td>5</td>
+      <td>Red</td>
+      <td>modified</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2020-11-25</td>
+      <td>001</td>
+      <td>22</td>
       <td>Yellow</td>
       <td>modified</td>
     </tr>
